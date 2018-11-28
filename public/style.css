@@ -1,0 +1,30 @@
+body {
+  background: DodgerBlue;
+}
+
+.welcomebox {
+  border: 2px solid black;
+  background-color: aqua;
+}
+
+.registerbox {
+  border: 2px solid red;
+  background: green;
+}
+
+.error {
+  font-size: 50px;
+  color: red;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.logo {
+  width: 200px;
+  height: 200px;
+  background: red;
+  border: 2px black solid;
+  text-align: center;
+  line-height: 200px;
+  vertical-align: middle;
+}
