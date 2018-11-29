@@ -31,7 +31,33 @@ exports.hashPassword = function(plainTextPassword) {
         });
     });
 };
+exports.getuser = email => {
+    return db.query(
+        `SELECT *
+    FROM usersdata
+    WHERE email = $1`,
+        [email]
+    );
+};
 
+exports.checkPassword = function(
+    textEnteredInLoginForm,
+    hashedPasswordFromDatabase
+) {
+    return new Promise(function(resolve, reject) {
+        bcrypt.compare(
+            textEnteredInLoginForm,
+            hashedPasswordFromDatabase,
+            function(err, doesMatch) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(doesMatch);
+                }
+            }
+        );
+    });
+};
 // exports.createsignature = function(userID, signature) {
 //     return db.query(
 //         `INSERT INTO signatures (userID, signature)
@@ -88,14 +114,6 @@ exports.hashPassword = function(plainTextPassword) {
 //         );
 //     }
 // };
-// exports.getuser = email => {
-//     return db.query(
-//         `SELECT *
-//         FROM usersdata
-//         WHERE email = $1`,
-//         [email]
-//     );
-// };
 // exports.deletesignature = userID => {
 //     return db.query(
 //         `DELETE FROM signatures
@@ -146,21 +164,3 @@ exports.hashPassword = function(plainTextPassword) {
 //     );
 // };
 //
-// exports.checkPassword = function(
-//     textEnteredInLoginForm,
-//     hashedPasswordFromDatabase
-// ) {
-//     return new Promise(function(resolve, reject) {
-//         bcrypt.compare(
-//             textEnteredInLoginForm,
-//             hashedPasswordFromDatabase,
-//             function(err, doesMatch) {
-//                 if (err) {
-//                     reject(err);
-//                 } else {
-//                     resolve(doesMatch);
-//                 }
-//             }
-//         );
-//     });
-// };

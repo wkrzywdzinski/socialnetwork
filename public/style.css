@@ -1,30 +1,29 @@
 body {
-  background: DodgerBlue;
+    background: DodgerBlue;
 }
 
 .welcomebox {
-  border: 2px solid black;
-  background-color: aqua;
+    border: 3px solid white;
+    background-color: aqua;
 }
 
 .registerbox {
-  border: 2px solid red;
-  background: green;
+    background: green;
 }
 
 .error {
-  font-size: 50px;
-  color: red;
-  font-weight: bold;
-  text-decoration: underline;
+    font-size: 50px;
+    color: red;
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 .logo {
-  width: 200px;
-  height: 200px;
-  background: red;
-  border: 2px black solid;
-  text-align: center;
-  line-height: 200px;
-  vertical-align: middle;
+    width: 200px;
+    height: 200px;
+    background: red;
+    border: 2px black solid;
+    text-align: center;
+    line-height: 200px;
+    vertical-align: middle;
 }

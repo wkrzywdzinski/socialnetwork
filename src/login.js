@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "./axios";
-import { Link } from "react-router-dom";
-export default class Registration extends React.Component {
+// import { Link } from "react-router-dom";
+export default class Login extends React.Component {
     constructor() {
         super();
         this.state = { error: false };
@@ -16,7 +16,7 @@ export default class Registration extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         // console.log(this.state);
-        axios.post("/registration", this.state).then(resp => {
+        axios.post("/login", this.state).then(resp => {
             if (resp.data.success) {
                 location.replace("/");
                 this.setState({
@@ -33,22 +33,9 @@ export default class Registration extends React.Component {
     render() {
         return (
             <div className="registerbox">
-                <h1>please register</h1>
-                <Link to="/login">click here to login</Link>
+                <h1>please login</h1>
                 {this.state.error && <p className="error">error</p>}
                 <form onSubmit={this.handleSubmit}>
-                    <input
-                        onChange={this.handleChange}
-                        name="firstname"
-                        type="text"
-                        placeholder="firstname"
-                    />
-                    <input
-                        onChange={this.handleChange}
-                        name="lastname"
-                        type="text"
-                        placeholder="lastname"
-                    />
                     <input
                         onChange={this.handleChange}
                         name="email"
