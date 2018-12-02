@@ -4,10 +4,13 @@ CREATE TABLE usersdata (
   name VARCHAR(200) NOT NULL,
   lastname VARCHAR(200) NOT NULL,
   email VARCHAR(100) UNIQUE,
-  password VARCHAR(200) NOT NULL
+  password VARCHAR(200) NOT NULL,
+  pictureurl VARCHAR(300)
 );
-SELECT * FROM usersdata;
 
+
+DROP TABLE IF EXISTS images;
+SELECT * FROM usersdata;
 -- DROP TABLE IF EXISTS signatures;
 -- CREATE TABLE signatures (
 --   id SERIAL PRIMARY KEY,

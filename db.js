@@ -39,6 +39,14 @@ exports.getuser = email => {
         [email]
     );
 };
+exports.getuserbyid = id => {
+    return db.query(
+        `SELECT *
+    FROM usersdata
+    WHERE id = $1`,
+        [id]
+    );
+};
 
 exports.checkPassword = function(
     textEnteredInLoginForm,
@@ -58,14 +66,6 @@ exports.checkPassword = function(
         );
     });
 };
-// exports.createsignature = function(userID, signature) {
-//     return db.query(
-//         `INSERT INTO signatures (userID, signature)
-//         VALUES ($1, $2)
-//         RETURNING id`,
-//         [userID || null, signature || null]
-//     );
-// };
 // exports.getsignature = userID => {
 //     return db.query(
 //         `SELECT signature
@@ -91,29 +91,15 @@ exports.checkPassword = function(
 //         [age || null, city || null, url || null, userID || null]
 //     );
 // };
-// exports.updateusersdata = function(name, lastname, email, password, userID) {
-//     if (password) {
-//         return db.query(
-//             `UPDATE usersdata
-//     SET name = $1, lastname = $2, email = $3, password = $4
-//     WHERE id = $5 `,
-//             [
-//                 name || null,
-//                 lastname || null,
-//                 email || null,
-//                 password || null,
-//                 userID || null
-//             ]
-//         );
-//     } else {
-//         return db.query(
-//             `UPDATE usersdata
-//       SET name = $1, lastname = $2, email = $3
-//       WHERE id = $4 `,
-//             [name || null, lastname || null, email || null, userID || null]
-//         );
-//     }
-// };
+exports.insertphoto = function(fullurl, userID) {
+    return db.query(
+        `UPDATE usersdata
+    SET pictureurl = $1
+    WHERE id = $2
+    RETURNING * `,
+        [fullurl || null, userID || null]
+    );
+};
 // exports.deletesignature = userID => {
 //     return db.query(
 //         `DELETE FROM signatures

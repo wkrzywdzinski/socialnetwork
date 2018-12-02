@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 var cookieSession = require("cookie-session");
 const csurf = require("csurf");
 const db = require("./db");
+const s3 = require("./s3");
+const config = require("./config.json");
 app.use(express.static("./public"));
 app.use(compression());
 app.use(bodyParser.json());
@@ -19,6 +21,30 @@ app.use(function(req, res, next) {
     res.cookie("mytoken", req.csrfToken());
     next();
 });
+///////////////////upload file///////////////////
+var multer = require("multer");
+var uidSafe = require("uid-safe");
+var path = require("path");
+
+var diskStorage = multer.diskStorage({
+    destination: function(req, file, callback) {
+        callback(null, __dirname + "/uploads");
+    },
+    filename: function(req, file, callback) {
+        //codes the file name to have unique///////
+        uidSafe(24).then(function(uid) {
+            callback(null, uid + path.extname(file.originalname));
+        });
+    }
+});
+//sets limit/////////
+var uploader = multer({
+    storage: diskStorage,
+    limits: {
+        fileSize: 2097152
+    }
+});
+//////////////////////get////////////////////////
 
 if (process.env.NODE_ENV != "production") {
     app.use(
@@ -76,6 +102,39 @@ app.post("/login", function(req, res) {
                         });
                     }
                 });
+        })
+        .catch(function(err) {
+            console.log(err);
+            res.json({
+                success: false
+            });
+        });
+});
+
+app.post("/upload", uploader.single("file"), s3.upload, function(req, res) {
+    let fullurl = config.s3Url + req.file.filename;
+    if (req.file) {
+        db.insertphoto(fullurl, req.session.id).then(function(results) {
+            console.log(results.rows);
+            res.json(results.rows);
+        });
+    } else {
+        res.json({
+            success: false
+        });
+    }
+});
+
+app.get("/user", function(req, res) {
+    db.getuserbyid(req.session.id)
+        .then(function(results) {
+            if (results) {
+                res.json(results.rows);
+            } else {
+                res.json({
+                    success: false
+                });
+            }
         })
         .catch(function(err) {
             console.log(err);
