@@ -56,6 +56,15 @@ if (process.env.NODE_ENV != "production") {
 } else {
     app.use("/bundle.js", (req, res) => res.sendFile(`${__dirname}/bundle.js`));
 }
+
+app.get("/welcome", function(req, res) {
+    if (req.session.id) {
+        res.redirect("/");
+    } else {
+        res.sendFile(__dirname + "/index.html");
+    }
+});
+
 app.post("/registration", (req, res) => {
     db.hashPassword(req.body.password)
         .then(function(password) {
@@ -124,6 +133,19 @@ app.post("/upload", uploader.single("file"), s3.upload, function(req, res) {
         });
     }
 });
+app.post("/bioupdate", function(req, res) {
+    console.log(req.body.bio);
+    if (req.body.bio) {
+        db.insertbio(req.body.bio, req.session.id).then(function(results) {
+            console.log(results.rows);
+            res.json(results.rows);
+        });
+    } else {
+        res.json({
+            success: false
+        });
+    }
+});
 
 app.get("/user", function(req, res) {
     db.getuserbyid(req.session.id)
@@ -144,8 +166,17 @@ app.get("/user", function(req, res) {
         });
 });
 
+app.get("/logout", function(req, res) {
+    req.session = null;
+    res.redirect("/welcome");
+});
+
 app.get("*", function(req, res) {
-    res.sendFile(__dirname + "/index.html");
+    if (!req.session.id) {
+        res.redirect("/welcome");
+    } else {
+        res.sendFile(__dirname + "/index.html");
+    }
 });
 
 app.listen(8080, function() {

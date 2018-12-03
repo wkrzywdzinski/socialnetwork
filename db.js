@@ -66,6 +66,26 @@ exports.checkPassword = function(
         );
     });
 };
+
+exports.insertphoto = function(fullurl, userID) {
+    return db.query(
+        `UPDATE usersdata
+    SET pictureurl = $1
+    WHERE id = $2
+    RETURNING * `,
+        [fullurl || null, userID || null]
+    );
+};
+
+exports.insertbio = function(bio, userID) {
+    return db.query(
+        `UPDATE usersdata
+    SET bio = $1
+    WHERE id = $2
+    RETURNING * `,
+        [bio || null, userID || null]
+    );
+};
 // exports.getsignature = userID => {
 //     return db.query(
 //         `SELECT signature
@@ -91,15 +111,6 @@ exports.checkPassword = function(
 //         [age || null, city || null, url || null, userID || null]
 //     );
 // };
-exports.insertphoto = function(fullurl, userID) {
-    return db.query(
-        `UPDATE usersdata
-    SET pictureurl = $1
-    WHERE id = $2
-    RETURNING * `,
-        [fullurl || null, userID || null]
-    );
-};
 // exports.deletesignature = userID => {
 //     return db.query(
 //         `DELETE FROM signatures

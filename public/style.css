@@ -36,3 +36,6 @@ body {
 input {
     text-align: center;
 }
+#header {
+    border: 2px solid black;
+}

@@ -5,7 +5,8 @@ CREATE TABLE usersdata (
   lastname VARCHAR(200) NOT NULL,
   email VARCHAR(100) UNIQUE,
   password VARCHAR(200) NOT NULL,
-  pictureurl VARCHAR(300)
+  pictureurl VARCHAR(300),
+  bio VARCHAR(300)
 );
 
 
