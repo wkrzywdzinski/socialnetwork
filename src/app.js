@@ -46,12 +46,14 @@ export default class App extends React.Component {
     render() {
         return (
             <div>
-                <Logo />
-                <Profilepic
-                    name={this.state.name}
-                    pictureurl={this.state.pictureurl}
-                    showuploader={this.showuploader}
-                />
+                <div id="header">
+                    <Logo />
+                    <Profilepic
+                        name={this.state.name}
+                        pictureurl={this.state.pictureurl}
+                        showuploader={this.showuploader}
+                    />
+                </div>
                 {this.state.uploadervisable && (
                     <Uploader handlePicture={this.handlePicture} />
                 )}

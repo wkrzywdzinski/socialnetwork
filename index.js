@@ -134,7 +134,6 @@ app.post("/upload", uploader.single("file"), s3.upload, function(req, res) {
     }
 });
 app.post("/bioupdate", function(req, res) {
-    console.log(req.body.bio);
     if (req.body.bio) {
         db.insertbio(req.body.bio, req.session.id).then(function(results) {
             console.log(results.rows);
