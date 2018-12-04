@@ -165,6 +165,31 @@ app.get("/user", function(req, res) {
         });
 });
 
+app.get("/other-user", function(req, res) {
+    if (req.query.otherid == req.session.id) {
+        res.json({
+            sameprofile: true
+        });
+    } else {
+        db.getuserbyid(req.query.otherid)
+            .then(function(results) {
+                if (results) {
+                    res.json(results.rows);
+                } else {
+                    res.json({
+                        success: false
+                    });
+                }
+            })
+            .catch(function(err) {
+                console.log(err);
+                res.json({
+                    success: false
+                });
+            });
+    }
+});
+
 app.get("/logout", function(req, res) {
     req.session = null;
     res.redirect("/welcome");

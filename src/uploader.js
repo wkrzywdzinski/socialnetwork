@@ -26,7 +26,7 @@ export default class Uploader extends React.Component {
 
     render() {
         return (
-            <div>
+            <div id="uploader">
                 <h1>update your picture</h1>
                 <form onSubmit={this.handleSubmit}>
                     <input

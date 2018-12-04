@@ -4,6 +4,7 @@ import Logo from "./logo";
 import Profile from "./profile";
 import Profilepic from "./profilepic";
 import Uploader from "./uploader";
+import OtherPersonProfile from "./otherpersonprofile";
 import { BrowserRouter, Route } from "react-router-dom";
 
 export default class App extends React.Component {
@@ -60,6 +61,7 @@ export default class App extends React.Component {
                 <BrowserRouter>
                     <div>
                         <Route
+                            exact
                             path="/"
                             render={() => {
                                 return (
@@ -71,6 +73,15 @@ export default class App extends React.Component {
                                     />
                                 );
                             }}
+                        />
+                        <Route
+                            path="/user/:id"
+                            render={props => (
+                                <OtherPersonProfile
+                                    {...props}
+                                    key={props.match.url}
+                                />
+                            )}
                         />
                     </div>
                 </BrowserRouter>

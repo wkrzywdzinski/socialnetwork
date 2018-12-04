@@ -28,10 +28,13 @@ export default class Profile extends React.Component {
             <div>
                 <h1> profile of {this.props.name} </h1>
                 <Profilepic pictureurl={this.props.pictureurl} />
-                {this.props.bio && <p>{this.props.bio} </p>}
+                {this.props.bio && <h1>bio: {this.props.bio} </h1>}
                 <p onClick={this.showBioUpdate}>update your bio</p>
                 {this.state.bioUpdateVisable && (
-                    <Bio handleBio={this.props.handleBio} />
+                    <Bio
+                        bio={this.props.bio}
+                        handleBio={this.props.handleBio}
+                    />
                 )}
             </div>
         );

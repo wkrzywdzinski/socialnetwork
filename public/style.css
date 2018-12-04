@@ -47,3 +47,7 @@ input {
     height: 200px;
     float: right;
 }
+#uploader {
+    float: right;
+    background: rgba(0, 0, 0, 0.2);
+}
