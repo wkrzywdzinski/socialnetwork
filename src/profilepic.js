@@ -9,7 +9,7 @@ export default function Profilepic(props) {
             </div>
         );
     } else {
-        picture = <img onClick={props.showuploader} src="./photo1.jpeg" />;
+        picture = <img onClick={props.showuploader} src="./nophoto.png" />;
     }
     return <div>{picture}</div>;
 }

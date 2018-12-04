@@ -77,6 +77,59 @@ exports.insertphoto = function(fullurl, userID) {
     );
 };
 
+exports.insertrequest = function(receiverID, senderID) {
+    return db
+        .query(
+            `INSERT INTO friendships (receiverID, senderID)
+    VALUES ($1, $2)
+    RETURNING *`,
+            [receiverID, senderID]
+        )
+        .catch(function(err) {
+            console.log("error in db", err);
+        });
+};
+
+exports.checkrequest = function(receiverID, senderID) {
+    return db
+        .query(
+            `SELECT * FROM friendships
+WHERE (receiverID = $1 AND senderID = $2)
+OR (receiverID = $2 AND senderID = $1)`,
+            [receiverID, senderID]
+        )
+        .catch(function(err) {
+            console.log("error in db", err);
+        });
+};
+
+exports.cancelrequest = function(receiverID, senderID) {
+    return db
+        .query(
+            `DELETE FROM friendships
+WHERE (receiverID = $1 AND senderID = $2)
+OR (receiverID = $2 AND senderID = $1)`,
+            [receiverID, senderID]
+        )
+        .catch(function(err) {
+            console.log("error in db", err);
+        });
+};
+
+exports.acceptrequest = function(receiverID, senderID) {
+    return db
+        .query(
+            `UPDATE friendships
+            SET accepted = true
+WHERE (receiverID = $1 AND senderID = $2)
+OR (receiverID = $2 AND senderID = $1)`,
+            [receiverID, senderID]
+        )
+        .catch(function(err) {
+            console.log("error in db", err);
+        });
+};
+
 exports.insertbio = function(bio, userID) {
     return db.query(
         `UPDATE usersdata

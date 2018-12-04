@@ -133,6 +133,52 @@ app.post("/upload", uploader.single("file"), s3.upload, function(req, res) {
         });
     }
 });
+app.post("/request", function(req, res) {
+    db.insertrequest(req.body.receiverid, req.session.id)
+        .then(function() {
+            res.json({
+                requestsent: true
+            });
+        })
+        .catch(function(err) {
+            console.log(err);
+            res.json({
+                requestsent: false
+            });
+        });
+});
+app.post("/cancelrequest", function(req, res) {
+    console.log("cancelrequest");
+    db.cancelrequest(req.body.receiverid, req.session.id)
+        .then(function() {
+            res.json({
+                reqdeleted: true
+            });
+        })
+        .catch(function(err) {
+            console.log(err);
+            res.json({
+                reqdeleted: false
+            });
+        });
+});
+
+app.post("/acceptrequest", function(req, res) {
+    console.log("acceptrequest");
+    db.acceptrequest(req.body.receiverid, req.session.id)
+        .then(function() {
+            res.json({
+                reqaccepted: true
+            });
+        })
+        .catch(function(err) {
+            console.log(err);
+            res.json({
+                reqaccepted: false
+            });
+        });
+});
+
 app.post("/bioupdate", function(req, res) {
     if (req.body.bio) {
         db.insertbio(req.body.bio, req.session.id).then(function(results) {
@@ -148,6 +194,24 @@ app.post("/bioupdate", function(req, res) {
 
 app.get("/user", function(req, res) {
     db.getuserbyid(req.session.id)
+        .then(function(results) {
+            if (results) {
+                res.json(results.rows);
+            } else {
+                res.json({
+                    success: false
+                });
+            }
+        })
+        .catch(function(err) {
+            console.log(err);
+            res.json({
+                success: false
+            });
+        });
+});
+app.get("/checkrequest", function(req, res) {
+    db.checkrequest(req.query.receiverid, req.session.id)
         .then(function(results) {
             if (results) {
                 res.json(results.rows);

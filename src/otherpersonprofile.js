@@ -1,12 +1,14 @@
 import React from "react";
 import axios from "./axios";
 import Profilepic from "./profilepic";
+import Request from "./request";
 
 export default class OtherPersonProfile extends React.Component {
     constructor() {
         super();
         this.state = {};
     }
+
     componentDidMount() {
         var self = this;
         axios
@@ -16,22 +18,21 @@ export default class OtherPersonProfile extends React.Component {
                 }
             })
             .then(function(resp) {
-                console.log(resp);
                 if (!resp.data[0] || resp.data.sameprofile) {
                     self.props.history.push("/");
                 } else {
                     self.setState(resp.data[0]);
-                    console.log(self.state);
                 }
             });
     }
 
     render() {
         return (
-            <div>
+            <div id="profilebox">
                 <h1> profile of {this.state.name} </h1>
                 <Profilepic pictureurl={this.state.pictureurl} />
                 {this.state.bio && <h1>bio: {this.state.bio} </h1>}
+                <Request receiverid={this.props.match.params.id} />
             </div>
         );
     }

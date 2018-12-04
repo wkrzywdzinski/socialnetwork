@@ -1,17 +1,19 @@
 body {
     background: #ebf0f6;
     font-family: "Stylish", sans-serif;
+    color: white;
     margin: 0;
+    background: red;
 }
 
 .welcomebox {
     border: 3px solid white;
-    background-color: #364e68;
+    background-color: orange;
     text-align: center;
 }
 
 .registerbox {
-    background: #98ccd3;
+    background: yellow;
 }
 
 .error {
@@ -38,16 +40,25 @@ input {
     text-align: center;
 }
 #header {
-    border: 2px solid black;
     width: 100%;
     height: 200px;
-    background: grey;
+    background: yellow;
 }
 #header img {
     height: 200px;
     float: right;
 }
 #uploader {
+    transition: 1s;
     float: right;
     background: rgba(0, 0, 0, 0.2);
+}
+#profilebox {
+    border: 2px white solid;
+    height: 100%;
+    text-align: center;
+    background: red;
+}
+#profilebox img {
+    width: 600px;
 }

@@ -9,16 +9,16 @@ CREATE TABLE usersdata (
   bio VARCHAR(300)
 );
 
-
-DROP TABLE IF EXISTS images;
 SELECT * FROM usersdata;
--- DROP TABLE IF EXISTS signatures;
--- CREATE TABLE signatures (
---   id SERIAL PRIMARY KEY,
---   userID INTEGER NOT NULL,
---   signature TEXT
--- );
--- SELECT * FROM signatures;
+
+DROP TABLE IF EXISTS friendships;
+CREATE TABLE friendships (
+  id SERIAL PRIMARY KEY,
+  receiverID INTEGER NOT NULL,
+  senderID INTEGER NOT NULL,
+  accepted BOOLEAN DEFAULT false
+);
+SELECT * FROM friendships;
 -- DROP TABLE IF EXISTS fullinfo;
 -- CREATE TABLE fullinfo (
 --   id SERIAL PRIMARY KEY,

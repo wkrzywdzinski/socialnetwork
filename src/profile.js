@@ -25,7 +25,7 @@ export default class Profile extends React.Component {
 
     render() {
         return (
-            <div>
+            <div id="profilebox">
                 <h1> profile of {this.props.name} </h1>
                 <Profilepic pictureurl={this.props.pictureurl} />
                 {this.props.bio && <h1>bio: {this.props.bio} </h1>}
