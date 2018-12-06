@@ -229,6 +229,26 @@ app.get("/checkrequest", function(req, res) {
         });
 });
 
+app.get("/receiveall", function(req, res) {
+    console.log("receiveall");
+    db.receiveall(req.session.id)
+        .then(function(results) {
+            if (results) {
+                res.json(results.rows);
+            } else {
+                res.json({
+                    success: false
+                });
+            }
+        })
+        .catch(function(err) {
+            console.log(err);
+            res.json({
+                success: false
+            });
+        });
+});
+
 app.get("/other-user", function(req, res) {
     if (req.query.otherid == req.session.id) {
         res.json({

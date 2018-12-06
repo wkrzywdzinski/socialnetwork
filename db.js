@@ -39,6 +39,21 @@ exports.getuser = email => {
         [email]
     );
 };
+
+exports.receiveall = userID => {
+    return db.query(
+        `
+  SELECT usersdata.id, name, lastname, pictureurl, accepted
+  FROM friendships
+  JOIN usersdata
+  ON (accepted = false AND receiverID = $1 AND senderID = usersdata.id)
+  OR (accepted = true AND receiverID = $1 AND senderID = usersdata.id)
+  OR (accepted = true AND senderID = $1 AND receiverID = usersdata.id)
+`,
+        [userID]
+    );
+};
+
 exports.getuserbyid = id => {
     return db.query(
         `SELECT *
