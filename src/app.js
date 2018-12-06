@@ -3,6 +3,8 @@ import axios from "./axios";
 import Logo from "./logo";
 import Profile from "./profile";
 import Profilepic from "./profilepic";
+import Friends from "./friends";
+
 import Uploader from "./uploader";
 import OtherPersonProfile from "./otherpersonprofile";
 import { BrowserRouter, Route } from "react-router-dom";
@@ -72,6 +74,13 @@ export default class App extends React.Component {
                                         bio={this.state.bio}
                                     />
                                 );
+                            }}
+                        />
+                        <Route
+                            exact
+                            path="/friends"
+                            render={() => {
+                                return <Friends />;
                             }}
                         />
                         <Route
