@@ -34,6 +34,7 @@ export default class Profile extends React.Component {
                     <Bio
                         bio={this.props.bio}
                         handleBio={this.props.handleBio}
+                        showBioUpdate={this.showBioUpdate}
                     />
                 )}
             </div>

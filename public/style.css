@@ -1,11 +1,17 @@
 body {
     background: #ebf0f6;
-    font-family: "Stylish", sans-serif;
-    color: white;
+    font-family: "Bowlby One", cursive;
     margin: 0;
-    background: red;
+    background: #fedc00;
+    background-image: radial-gradient(white 20%, transparent 0),
+        radial-gradient(white 20%, transparent 0);
+    background-size: 30px 30px;
+    background-position: 0 0, 15px 15px;
+    box-sizing: border-box;
 }
-
+p {
+    font-size: 70px;
+}
 .welcomebox {
     border: 3px solid white;
     background-color: orange;
@@ -40,27 +46,63 @@ input {
     text-align: center;
 }
 #header {
-    width: 100%;
+    position: relative;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 20px black solid;
+    border-radius: 50px;
+    padding: 10px;
+    width: 97%;
     height: 200px;
-    background: yellow;
+    /* background: #e02202; */
+    background: white;
+}
+#header p {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 100px;
+    font-family: "Notable";
+    color: black;
 }
 #header img {
-    height: 200px;
-    float: right;
+    height: 180px;
+    position: absolute;
+    right: 20px;
+    margin: 10px;
+    border: 2px black solid;
+    border-radius: 20%;
 }
 #uploader {
-    transition: 1s;
-    float: right;
-    background: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 700px;
+    height: 200px;
+    background: red;
 }
 #profilebox {
-    border: 2px white solid;
     height: 100%;
     text-align: center;
-    background: red;
 }
 #profilebox img {
     width: 600px;
+}
+#updatebio {
+    background: red;
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#updatebio input {
+    width: 400px;
+    height: 350px;
 }
 .friendsbox {
     border: 5px white solid;

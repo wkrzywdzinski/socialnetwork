@@ -30,6 +30,7 @@ export default class Bio extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         var self = this;
+        self.props.showBioUpdate();
         axios.post("/bioupdate", self.state).then(resp => {
             self.props.handleBio(resp);
         });
@@ -37,13 +38,13 @@ export default class Bio extends React.Component {
 
     render() {
         return (
-            <div>
+            <div id="updatebio">
                 <form onSubmit={this.handleSubmit}>
                     <input
                         onChange={this.handleChange}
                         name="bio"
                         type="text"
-                        placeholder="bio"
+                        defaultValue={this.props.bio}
                     />
                     <button>update</button>
                 </form>

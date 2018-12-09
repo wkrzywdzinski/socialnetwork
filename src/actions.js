@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "./axios";
 
 export async function receiveFriendsAndWannabes() {
     const { data } = await axios.get("/receiveall");
@@ -8,7 +8,9 @@ export async function receiveFriendsAndWannabes() {
     };
 }
 export async function actionAdd(userid) {
-    const { data } = await axios.get("/receiveall");
+    const { data } = axios.post("/acceptrequest", {
+        receiverid: userid
+    });
     return {
         type: "ADD_FRIEND",
         userid: userid,
@@ -16,7 +18,9 @@ export async function actionAdd(userid) {
     };
 }
 export async function actionDelete(userid) {
-    const { data } = await axios.get("/receiveall");
+    const { data } = await axios.post("/cancelrequest", {
+        receiverid: userid
+    });
     return {
         type: "DELETE_FRIEND",
         userid: userid,

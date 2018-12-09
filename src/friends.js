@@ -13,16 +13,10 @@ class Friends extends React.Component {
     deleteFriend(userid) {
         console.log("delete");
         this.props.dispatch(actionDelete(userid));
-        axios.post("/cancelrequest", {
-            receiverid: userid
-        });
     }
     addFriend(userid) {
         console.log("add");
         this.props.dispatch(actionAdd(userid));
-        axios.post("/acceptrequest", {
-            receiverid: userid
-        });
     }
     componentDidMount() {
         this.props.dispatch(receiveFriendsAndWannabes());

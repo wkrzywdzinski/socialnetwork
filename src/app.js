@@ -4,6 +4,7 @@ import Logo from "./logo";
 import Profile from "./profile";
 import Profilepic from "./profilepic";
 import Friends from "./friends";
+import EasyTransition from "react-easy-transition";
 
 import Uploader from "./uploader";
 import OtherPersonProfile from "./otherpersonprofile";
@@ -50,15 +51,25 @@ export default class App extends React.Component {
         return (
             <div>
                 <div id="header">
+                    {/*
                     <Logo />
+                    */}
                     <Profilepic
                         name={this.state.name}
                         pictureurl={this.state.pictureurl}
                         showuploader={this.showuploader}
                     />
+                    <p>WEIRDOBOOK</p>
                 </div>
                 {this.state.uploadervisable && (
-                    <Uploader handlePicture={this.handlePicture} />
+                    <EasyTransition
+                        path={location.pathname}
+                        initialStyle={{ opacity: 0, color: "red" }}
+                        transition="opacity 0.3s ease-in, color 0.5s ease-in"
+                        finalStyle={{ opacity: 0.9, color: "white" }}
+                    >
+                        <Uploader handlePicture={this.handlePicture} />
+                    </EasyTransition>
                 )}
                 <BrowserRouter>
                     <div>
