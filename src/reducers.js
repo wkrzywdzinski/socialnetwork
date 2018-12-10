@@ -23,5 +23,23 @@ export default function(state = {}, action) {
             })
         });
     }
+    if (action.type == "ALL_ONLINE") {
+        state = Object.assign({}, state, {
+            online: action.online
+        });
+    }
+    if (action.type == "USER_JOINED") {
+        state = Object.assign({}, state, {
+            online: state.online.concat(action.newuser)
+        });
+    }
+    if (action.type == "USER_LEFT") {
+        console.log(action.id);
+        state = Object.assign({}, state, {
+            online:
+                state.online &&
+                state.online.filter(user => user.id != action.id)
+        });
+    }
     return state;
 }

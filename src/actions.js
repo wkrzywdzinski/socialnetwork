@@ -1,5 +1,22 @@
 import axios from "./axios";
-
+export async function actionAllOnline(results) {
+    return {
+        online: results,
+        type: "ALL_ONLINE"
+    };
+}
+export async function userJoined(results) {
+    return {
+        newuser: results,
+        type: "USER_JOINED"
+    };
+}
+export async function userLeft(userID) {
+    return {
+        type: "USER_LEFT",
+        id: userID
+    };
+}
 export async function receiveFriendsAndWannabes() {
     const { data } = await axios.get("/receiveall");
     return {

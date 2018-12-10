@@ -154,6 +154,10 @@ exports.insertbio = function(bio, userID) {
         [bio || null, userID || null]
     );
 };
+exports.getUsersByIds = function getUsersByIds(arrayOfIds) {
+    const query = `SELECT id,name, lastname, pictureurl FROM usersdata WHERE id = ANY($1)`;
+    return db.query(query, [arrayOfIds]);
+};
 // exports.getsignature = userID => {
 //     return db.query(
 //         `SELECT signature

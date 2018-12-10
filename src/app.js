@@ -1,12 +1,12 @@
 import React from "react";
 import axios from "./axios";
-import Logo from "./logo";
+import EasyTransition from "react-easy-transition";
+// import Logo from "./logo";
 import Profile from "./profile";
 import Profilepic from "./profilepic";
 import Friends from "./friends";
-import EasyTransition from "react-easy-transition";
-
 import Uploader from "./uploader";
+import Online from "./online";
 import OtherPersonProfile from "./otherpersonprofile";
 import { BrowserRouter, Route } from "react-router-dom";
 
@@ -64,9 +64,9 @@ export default class App extends React.Component {
                 {this.state.uploadervisable && (
                     <EasyTransition
                         path={location.pathname}
-                        initialStyle={{ opacity: 0, color: "red" }}
-                        transition="opacity 0.3s ease-in, color 0.5s ease-in"
-                        finalStyle={{ opacity: 0.9, color: "white" }}
+                        initialStyle={{ opacity: 0, background: "red" }}
+                        transition="opacity 0.3s ease-in, background 0.5s ease-in"
+                        finalStyle={{ opacity: 0.9, background: "white" }}
                     >
                         <Uploader handlePicture={this.handlePicture} />
                     </EasyTransition>
@@ -95,6 +95,13 @@ export default class App extends React.Component {
                             }}
                         />
                         <Route
+                            exact
+                            path="/online"
+                            render={() => {
+                                return <Online />;
+                            }}
+                        />
+                        <Route
                             path="/user/:id"
                             render={props => (
                                 <OtherPersonProfile
@@ -105,6 +112,7 @@ export default class App extends React.Component {
                         />
                     </div>
                 </BrowserRouter>
+                <footer />
             </div>
         );
     }
