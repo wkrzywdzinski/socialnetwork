@@ -15,8 +15,10 @@ class Chat extends React.Component {
     sendMessage(e) {
         let socket = initSocket();
         if (e.which == 13) {
+            e.preventDefault();
             console.log(e.target.value);
             socket.emit("chatmessage", e.target.value);
+            e.target.value = "";
         }
     }
 
@@ -30,7 +32,7 @@ class Chat extends React.Component {
                 {messages.map(message => (
                     <div key={message.id} className="user">
                         <p>
-                            {message.userid}: {message.message}{" "}
+                            {message.name}: {message.message}{" "}
                         </p>
                     </div>
                 ))}

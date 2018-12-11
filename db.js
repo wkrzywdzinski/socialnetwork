@@ -111,9 +111,24 @@ exports.insertmessage = function(message, userID) {
 
 exports.getmessages = function() {
     return db.query(
-        `SELECT * FROM messages
-    ORDER BY id ASC
-    LIMIT 10`
+        `SELECT messages.id, name, lastname, pictureurl, message
+     FROM usersdata
+     LEFT JOIN messages
+     ON usersdata.id = messages.userID
+     ORDER BY messages.id DESC
+     LIMIT 10
+     `
+    );
+};
+exports.getlastmessage = function(messageID) {
+    return db.query(
+        `SELECT messages.id, name, lastname, pictureurl, message
+     FROM usersdata
+     LEFT JOIN messages
+     ON usersdata.id = messages.userID
+     WHERE (messages.id = $1)
+     `,
+        [messageID]
     );
 };
 

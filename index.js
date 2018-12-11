@@ -304,7 +304,7 @@ io.on("connection", socket => {
         socket.emit("onlineUsers", results.rows);
     });
     db.getmessages().then(function(results) {
-        socket.emit("getMessages", results.rows);
+        socket.emit("getMessages", results.rows.reverse());
     });
     if (arrayID.filter(obj => obj == userID).length == 1) {
         db.getuserbyid(userID).then(function(results) {
@@ -314,12 +314,17 @@ io.on("connection", socket => {
     socket.on("chatmessage", function(data) {
         db.insertmessage(data, socket.request.session.id)
             .then(function(results) {
-                io.emit("newMessage", results.rows);
+                db.getlastmessage(results.rows[0].id).then(function(
+                    resultstwo
+                ) {
+                    io.emit("newMessage", resultstwo.rows);
+                });
             })
             .catch(function(err) {
                 console.log(err);
             });
     });
+
     socket.on("disconnect", function() {
         if (arrayID.filter(obj => obj == userID).length == 1) {
             io.sockets.emit("userLeave", userID);
