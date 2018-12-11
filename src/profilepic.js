@@ -11,5 +11,10 @@ export default function Profilepic(props) {
     } else {
         picture = <img onClick={props.showuploader} src="/nophoto.png" />;
     }
-    return <div>{picture}</div>;
+    return (
+        <div>
+            {picture}
+            <p className="username">{props.name}</p>
+        </div>
+    );
 }

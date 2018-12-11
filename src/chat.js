@@ -8,15 +8,13 @@ class Chat extends React.Component {
         this.state = {};
         this.sendMessage = this.sendMessage.bind(this);
     }
-    // componentDidUpdate() {
-    //     console.log("change", this.elem);
-    //     this.elem.scrollTop = this.elem.scrollHeight;
-    // }
+    componentDidUpdate() {
+        this.elem.scrollTop = this.elem.scrollHeight;
+    }
     sendMessage(e) {
         let socket = initSocket();
         if (e.which == 13) {
             e.preventDefault();
-            console.log(e.target.value);
             socket.emit("chatmessage", e.target.value);
             e.target.value = "";
         }
@@ -28,11 +26,11 @@ class Chat extends React.Component {
             return null;
         }
         const messagerender = (
-            <div className="users">
+            <div>
                 {messages.map(message => (
-                    <div key={message.id} className="user">
+                    <div key={message.id} className="message">
                         <p>
-                            {message.name}: {message.message}{" "}
+                            {message.name}: {message.message}
                         </p>
                     </div>
                 ))}
@@ -40,7 +38,7 @@ class Chat extends React.Component {
         );
 
         return (
-            <div>
+            <div id="chatbox" ref={elem => (this.elem = elem)}>
                 <h1>chat</h1>
                 {messagerender}
                 <textarea onKeyDown={this.sendMessage} />

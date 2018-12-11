@@ -60,7 +60,7 @@ export default class App extends React.Component {
                         pictureurl={this.state.pictureurl}
                         showuploader={this.showuploader}
                     />
-                    <p>WEIRDOBOOK</p>
+                    <p id="headerfont">WEIRDOBOOK</p>
                 </div>
                 {this.state.uploadervisable && (
                     <EasyTransition

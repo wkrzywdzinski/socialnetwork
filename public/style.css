@@ -7,10 +7,10 @@ body {
         radial-gradient(white 20%, transparent 0);
     background-size: 30px 30px;
     background-position: 0 0, 15px 15px;
-    box-sizing: border-box;
+    box-sizing: content-box;
 }
 p {
-    font-size: 70px;
+    font-size: 30px;
 }
 .welcomebox {
     border: 3px solid white;
@@ -55,10 +55,9 @@ input {
     padding: 10px;
     width: 97%;
     height: 200px;
-    /* background: #e02202; */
     background: white;
 }
-#header p {
+#headerfont {
     position: absolute;
     top: 5%;
     left: 50%;
@@ -68,12 +67,17 @@ input {
     color: black;
 }
 #header img {
-    height: 180px;
+    height: 220px;
     position: absolute;
-    right: 20px;
-    margin: 10px;
-    border: 2px black solid;
-    border-radius: 20%;
+    top: 0px;
+    left: 0px;
+}
+.username {
+    color: white;
+    position: absolute;
+    left: 10%;
+    bottom: 10%;
+    z-index: 99;
 }
 #uploader {
     position: absolute;
@@ -113,4 +117,21 @@ footer {
     height: 30px;
     background: red;
     border: 5px black solid;
+}
+#chatbox {
+    display: inline-block;
+    height: 75vh;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: auto;
+    text-align: center;
+}
+#chatbox p {
+    font-size: 30px;
+}
+#chatbox textarea {
+    width: 50%;
+}
+.message {
+    border-bottom: 5px solid black;
 }

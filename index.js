@@ -128,7 +128,6 @@ app.post("/upload", uploader.single("file"), s3.upload, function(req, res) {
     let fullurl = config.s3Url + req.file.filename;
     if (req.file) {
         db.insertphoto(fullurl, req.session.id).then(function(results) {
-            console.log(results.rows);
             res.json(results.rows);
         });
     } else {
@@ -152,7 +151,6 @@ app.post("/request", function(req, res) {
         });
 });
 app.post("/cancelrequest", function(req, res) {
-    console.log("cancelrequest");
     db.cancelrequest(req.body.receiverid, req.session.id)
         .then(function() {
             res.json({
@@ -168,7 +166,6 @@ app.post("/cancelrequest", function(req, res) {
 });
 
 app.post("/acceptrequest", function(req, res) {
-    console.log("acceptrequest");
     db.acceptrequest(req.body.receiverid, req.session.id)
         .then(function() {
             res.json({
@@ -186,7 +183,6 @@ app.post("/acceptrequest", function(req, res) {
 app.post("/bioupdate", function(req, res) {
     if (req.body.bio) {
         db.insertbio(req.body.bio, req.session.id).then(function(results) {
-            console.log(results.rows);
             res.json(results.rows);
         });
     } else {
@@ -234,7 +230,6 @@ app.get("/checkrequest", function(req, res) {
 });
 
 app.get("/receiveall", function(req, res) {
-    console.log("receiveall");
     db.receiveall(req.session.id)
         .then(function(results) {
             if (results) {
