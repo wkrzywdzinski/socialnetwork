@@ -5,7 +5,6 @@ export default function(state = {}, action) {
         });
     }
     if (action.type == "DELETE_FRIEND") {
-        console.log("reducerdelete");
         state = Object.assign({}, state, {
             all: state.all.filter(function(user) {
                 return user.id != action.userid;
@@ -13,7 +12,6 @@ export default function(state = {}, action) {
         });
     }
     if (action.type == "ADD_FRIEND") {
-        console.log("reduceradd");
         state = Object.assign({}, state, {
             all: state.all.map(function(user) {
                 if (user.id == action.userid) {
@@ -28,13 +26,22 @@ export default function(state = {}, action) {
             online: action.online
         });
     }
+    if (action.type == "GET_MESSAGES") {
+        state = Object.assign({}, state, {
+            messages: action.messages
+        });
+    }
+    if (action.type == "NEW_MESSAGE") {
+        state = Object.assign({}, state, {
+            messages: state.messages.concat(action.newmessage)
+        });
+    }
     if (action.type == "USER_JOINED") {
         state = Object.assign({}, state, {
             online: state.online.concat(action.newuser)
         });
     }
     if (action.type == "USER_LEFT") {
-        console.log(action.id);
         state = Object.assign({}, state, {
             online:
                 state.online &&

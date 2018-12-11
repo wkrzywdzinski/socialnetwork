@@ -11,11 +11,9 @@ class Friends extends React.Component {
         this.addFriend = this.addFriend.bind(this);
     }
     deleteFriend(userid) {
-        console.log("delete");
         this.props.dispatch(actionDelete(userid));
     }
     addFriend(userid) {
-        console.log("add");
         this.props.dispatch(actionAdd(userid));
     }
     componentDidMount() {

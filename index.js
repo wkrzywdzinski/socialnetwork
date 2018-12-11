@@ -300,15 +300,26 @@ io.on("connection", socket => {
     let socketID = socket.id;
     onlineUsers[socketID] = userID;
     let arrayID = Object.values(onlineUsers);
+    db.getUsersByIds(arrayID).then(function(results) {
+        socket.emit("onlineUsers", results.rows);
+    });
+    db.getmessages().then(function(results) {
+        socket.emit("getMessages", results.rows);
+    });
     if (arrayID.filter(obj => obj == userID).length == 1) {
         db.getuserbyid(userID).then(function(results) {
             socket.broadcast.emit("userJoined", results.rows);
         });
     }
-    db.getUsersByIds(arrayID).then(function(results) {
-        socket.emit("onlineUsers", results.rows);
+    socket.on("chatmessage", function(data) {
+        db.insertmessage(data, socket.request.session.id)
+            .then(function(results) {
+                io.emit("newMessage", results.rows);
+            })
+            .catch(function(err) {
+                console.log(err);
+            });
     });
-
     socket.on("disconnect", function() {
         if (arrayID.filter(obj => obj == userID).length == 1) {
             io.sockets.emit("userLeave", userID);

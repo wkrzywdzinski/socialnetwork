@@ -93,16 +93,28 @@ exports.insertphoto = function(fullurl, userID) {
 };
 
 exports.insertrequest = function(receiverID, senderID) {
-    return db
-        .query(
-            `INSERT INTO friendships (receiverID, senderID)
+    return db.query(
+        `INSERT INTO friendships (receiverID, senderID)
     VALUES ($1, $2)
     RETURNING *`,
-            [receiverID, senderID]
-        )
-        .catch(function(err) {
-            console.log("error in db", err);
-        });
+        [receiverID, senderID]
+    );
+};
+exports.insertmessage = function(message, userID) {
+    return db.query(
+        `INSERT INTO messages (message, userID)
+    VALUES ($1, $2)
+    RETURNING *`,
+        [message, userID]
+    );
+};
+
+exports.getmessages = function() {
+    return db.query(
+        `SELECT * FROM messages
+    ORDER BY id ASC
+    LIMIT 10`
+    );
 };
 
 exports.checkrequest = function(receiverID, senderID) {

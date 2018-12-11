@@ -1,4 +1,18 @@
 import axios from "./axios";
+export async function actionGetMessages(results) {
+    return {
+        messages: results,
+        type: "GET_MESSAGES"
+    };
+}
+
+export async function actionNewMessage(results) {
+    return {
+        newmessage: results,
+        type: "NEW_MESSAGE"
+    };
+}
+
 export async function actionAllOnline(results) {
     return {
         online: results,

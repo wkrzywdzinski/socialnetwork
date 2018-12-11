@@ -19,12 +19,11 @@ CREATE TABLE friendships (
   accepted BOOLEAN DEFAULT false
 );
 SELECT * FROM friendships;
--- DROP TABLE IF EXISTS fullinfo;
--- CREATE TABLE fullinfo (
---   id SERIAL PRIMARY KEY,
---   userID INTEGER UNIQUE,
---   age INTEGER NOT NULL,
---   city VARCHAR(200) NOT NULL,
---   url TEXT
--- );
--- SELECT * FROM fullinfo;
+
+DROP TABLE IF EXISTS messages;
+CREATE TABLE messages (
+  id SERIAL PRIMARY KEY,
+  userID INTEGER NOT NULL,
+  message VARCHAR(500)
+);
+SELECT * FROM messages;
