@@ -9,6 +9,10 @@ body {
     background-position: 0 0, 15px 15px;
     box-sizing: content-box;
 }
+h1 {
+    font-size: 50px;
+    text-decoration: underline;
+}
 p {
     font-size: 30px;
 }
@@ -72,6 +76,12 @@ input {
     top: 0px;
     left: 0px;
 }
+#searchbar {
+    width: 100%;
+    background: black;
+    color: white;
+    border: 0;
+}
 .username {
     color: white;
     position: absolute;
@@ -134,4 +144,25 @@ footer {
 }
 .message {
     border-bottom: 5px solid black;
+}
+.users {
+    text-align: center;
+}
+.users img {
+    height: 300px;
+}
+.searchbox {
+    background: black;
+    background-image: radial-gradient(white 10%, transparent 0),
+        radial-gradient(white 10%, transparent 0);
+    background-size: 30px 30px;
+    background-position: 0 0, 15px 15px;
+    text-align: center;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%);
+}
+a:visited {
+    color: blue;
 }

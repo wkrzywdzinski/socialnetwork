@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-// import { receiveFriendsAndWannabes, actionAdd, actionDelete } from "./actions";
-// import axios from "./axios";
+import { Link } from "react-router-dom";
 
 class Online extends React.Component {
     constructor() {
@@ -15,21 +14,21 @@ class Online extends React.Component {
         }
         const onlinerender = (
             <div className="users">
+                <h1>online</h1>
                 {online.map(user => (
                     <div key={user.id} className="user">
-                        <h1>{user.name}</h1>
-                        <img src={user.pictureurl} />
+                        <Link to={`/user/${user.id}`}>
+                            <p>
+                                {user.name} {user.lastname}
+                            </p>
+                            <img src={user.pictureurl} />
+                        </Link>
                     </div>
                 ))}
             </div>
         );
 
-        return (
-            <div>
-                <h1>online</h1>
-                {onlinerender}
-            </div>
-        );
+        return <div>{onlinerender}</div>;
     }
 }
 

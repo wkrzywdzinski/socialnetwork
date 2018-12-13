@@ -5,9 +5,11 @@ export default class Search extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchresults: ""
+            searchresults: "",
+            resultsvisable: true
         };
         this.handleChange = this.handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     handleChange(e) {
@@ -30,15 +32,24 @@ export default class Search extends React.Component {
         }
     }
 
+    handleClick() {
+        this.setState({
+            searchresults: ""
+        });
+    }
+
     render() {
         const searchresults = this.state.searchresults;
         const searchrender = (
-            <div className="users">
+            <div className="searchbox">
                 {searchresults &&
                     searchresults.map(user => (
                         <div key={user.id} className="user">
                             <h1>
-                                <Link to={`/user/${user.id}`}>
+                                <Link
+                                    onClick={this.handleClick}
+                                    to={`/user/${user.id}`}
+                                >
                                     {user.name} {user.lastname}
                                 </Link>
                             </h1>
@@ -50,9 +61,11 @@ export default class Search extends React.Component {
             <div id="search">
                 <form>
                     <input
+                        id="searchbar"
                         onChange={this.handleChange}
                         name="search"
                         type="text"
+                        placeholder="search for users"
                     />
                 </form>
                 {searchrender}
