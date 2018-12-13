@@ -43,7 +43,7 @@ exports.searchuser = search => {
     return db.query(
         `SELECT *
     FROM usersdata
-    WHERE LIKE $1 OR lastname LIKE $1`,
+    WHERE name LIKE $1 OR lastname LIKE $1`,
         [search]
     );
 };
