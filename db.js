@@ -39,6 +39,14 @@ exports.getuser = email => {
         [email]
     );
 };
+exports.searchuser = search => {
+    return db.query(
+        `SELECT *
+    FROM usersdata
+    WHERE name SIMILAR TO $1 OR lastname SIMILAR TO $1`,
+        [search]
+    );
+};
 
 exports.receiveall = userID => {
     return db.query(

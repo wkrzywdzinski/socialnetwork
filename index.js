@@ -210,6 +210,24 @@ app.get("/user", function(req, res) {
             });
         });
 });
+app.get("/searchuser", function(req, res) {
+    db.searchuser(req.query.search + "%")
+        .then(function(results) {
+            if (results.rows.length === 0) {
+                console.log("noresults");
+            } else {
+                res.json({
+                    searchResults: results.rows
+                });
+            }
+        })
+        .catch(function(err) {
+            console.log(err);
+            res.json({
+                success: false
+            });
+        });
+});
 app.get("/checkrequest", function(req, res) {
     db.checkrequest(req.query.receiverid, req.session.id)
         .then(function(results) {

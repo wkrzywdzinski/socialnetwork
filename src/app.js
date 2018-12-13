@@ -8,6 +8,7 @@ import Friends from "./friends";
 import Uploader from "./uploader";
 import Online from "./online";
 import Chat from "./chat";
+import Search from "./search";
 import OtherPersonProfile from "./otherpersonprofile";
 import { BrowserRouter, Route } from "react-router-dom";
 
@@ -74,6 +75,7 @@ export default class App extends React.Component {
                 )}
                 <BrowserRouter>
                     <div>
+                        <Search />
                         <Route
                             exact
                             path="/"
