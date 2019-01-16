@@ -78,8 +78,9 @@ app.post("/registration", (req, res) => {
                 req.body.email,
                 password
             ).then(function(results) {
-                if (results) {
+                if (results.rows.length > 0) {
                     req.session.id = results.rows[0].id;
+                    req.session.levelid = results.rows[0].levelid;
                     res.json({
                         success: true
                     });
@@ -104,8 +105,9 @@ app.post("/login", function(req, res) {
             return db
                 .checkPassword(req.body.password, results.rows[0].password)
                 .then(function(check) {
-                    if (check) {
+                    if (check.rows.length > 0) {
                         req.session.id = results.rows[0].id;
+                        req.session.levelid = results.rows[0].levelid;
                         res.json({
                             success: true
                         });
@@ -178,18 +180,6 @@ app.post("/acceptrequest", function(req, res) {
                 reqaccepted: false
             });
         });
-});
-
-app.post("/bioupdate", function(req, res) {
-    if (req.body.bio) {
-        db.insertbio(req.body.bio, req.session.id).then(function(results) {
-            res.json(results.rows);
-        });
-    } else {
-        res.json({
-            success: false
-        });
-    }
 });
 
 app.get("/user", function(req, res) {
@@ -316,7 +306,7 @@ io.on("connection", socket => {
     db.getUsersByIds(arrayID).then(function(results) {
         socket.emit("onlineUsers", results.rows);
     });
-    db.getmessages().then(function(results) {
+    db.getmessages(userID).then(function(results) {
         socket.emit("getMessages", results.rows.reverse());
     });
     if (arrayID.filter(obj => obj == userID).length == 1) {

@@ -20,10 +20,18 @@ p {
     border: 3px solid white;
     background-color: orange;
     text-align: center;
+    font-family: "Notable";
 }
 
 .registerbox {
     background: yellow;
+}
+.registerbox input {
+    height: 90px;
+    font-family: "Notable";
+}
+#login {
+    color: black;
 }
 
 .error {
@@ -76,6 +84,9 @@ input {
     top: 0px;
     left: 0px;
 }
+#burger {
+    height: 20px;
+}
 #searchbar {
     width: 100%;
     background: black;
@@ -89,13 +100,24 @@ input {
     bottom: 10%;
     z-index: 99;
 }
+.users a {
+    color: black;
+}
+.users a:visited {
+    color: black;
+}
 #uploader {
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
     width: 700px;
-    height: 200px;
+    height: 300px;
+    background: red;
+    background-image: radial-gradient(white 10%, transparent 0),
+        radial-gradient(white 10%, transparent 0);
+    background-size: 30px 30px;
+    background-position: 0 0, 15px 15px;
 }
 #profilebox {
     height: 100%;
@@ -125,8 +147,8 @@ footer {
     bottom: 0;
     width: 100%;
     height: 30px;
-    background: red;
-    border: 5px black solid;
+    background: black;
+    border: 5px white solid;
 }
 #chatbox {
     display: inline-block;
@@ -163,6 +185,18 @@ footer {
     left: 50%;
     transform: translate(-50%);
 }
+a {
+    font-size: 30px;
+    color: yellow;
+}
 a:visited {
-    color: blue;
+    font-size: 30px;
+    color: yellow;
+}
+button {
+    background: black;
+    color: white;
+    width: 200px;
+    height: 100px;
+    font-family: "Notable";
 }

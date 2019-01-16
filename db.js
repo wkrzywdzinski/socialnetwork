@@ -117,15 +117,16 @@ exports.insertmessage = function(message, userID) {
     );
 };
 
-exports.getmessages = function() {
+exports.getmessages = function(userID) {
     return db.query(
         `SELECT messages.id, name, lastname, pictureurl, message
      FROM usersdata
      LEFT JOIN messages
      ON usersdata.id = messages.userID
      ORDER BY messages.id DESC
-     LIMIT 10
-     `
+          WHERE (usersdata.id = $1)
+     `,
+        [userID]
     );
 };
 exports.getlastmessage = function(messageID) {

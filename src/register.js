@@ -62,7 +62,9 @@ export default class Registration extends React.Component {
                     />
                     <button>submit</button>
                 </form>
-                <Link to="/login">or click here to login</Link>
+                <Link to="/login" style={{ color: "#000000" }}>
+                    or click here to login
+                </Link>
             </div>
         );
     }

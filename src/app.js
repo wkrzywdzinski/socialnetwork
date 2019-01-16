@@ -61,7 +61,7 @@ export default class App extends React.Component {
                         pictureurl={this.state.pictureurl}
                         showuploader={this.showuploader}
                     />
-                    <p id="headerfont">WEIRDOBOOK</p>
+                    <p id="headerfont">POLKA DOT CLUB</p>
                 </div>
                 {this.state.uploadervisable && (
                     <EasyTransition
@@ -78,6 +78,20 @@ export default class App extends React.Component {
                         <Search />
                         <Route
                             exact
+                            path="/profile"
+                            render={() => {
+                                return (
+                                    <Profile
+                                        handleBio={this.handleBio}
+                                        name={this.state.name}
+                                        pictureurl={this.state.pictureurl}
+                                        bio={this.state.bio}
+                                    />
+                                );
+                            }}
+                        />
+                        <Route
+                            exact
                             path="/"
                             render={() => {
                                 return (
@@ -90,6 +104,7 @@ export default class App extends React.Component {
                                 );
                             }}
                         />
+
                         <Route
                             exact
                             path="/friends"
