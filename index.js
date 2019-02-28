@@ -105,7 +105,7 @@ app.post("/login", function(req, res) {
             return db
                 .checkPassword(req.body.password, results.rows[0].password)
                 .then(function(check) {
-                    if (check.rows.length > 0) {
+                    if (check) {
                         req.session.id = results.rows[0].id;
                         req.session.levelid = results.rows[0].levelid;
                         res.json({
@@ -306,7 +306,7 @@ io.on("connection", socket => {
     db.getUsersByIds(arrayID).then(function(results) {
         socket.emit("onlineUsers", results.rows);
     });
-    db.getmessages(userID).then(function(results) {
+    db.getmessages().then(function(results) {
         socket.emit("getMessages", results.rows.reverse());
     });
     if (arrayID.filter(obj => obj == userID).length == 1) {

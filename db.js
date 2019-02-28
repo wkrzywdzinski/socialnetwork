@@ -39,14 +39,6 @@ exports.getuser = email => {
         [email]
     );
 };
-exports.searchuser = search => {
-    return db.query(
-        `SELECT *
-    FROM usersdata
-    WHERE name LIKE $1 OR lastname LIKE $1`,
-        [search]
-    );
-};
 
 exports.receiveall = userID => {
     return db.query(
@@ -61,7 +53,7 @@ exports.receiveall = userID => {
         [userID]
     );
 };
-
+//
 exports.getuserbyid = id => {
     return db.query(
         `SELECT *
@@ -117,16 +109,15 @@ exports.insertmessage = function(message, userID) {
     );
 };
 
-exports.getmessages = function(userID) {
+exports.getmessages = function() {
     return db.query(
         `SELECT messages.id, name, lastname, pictureurl, message
      FROM usersdata
      LEFT JOIN messages
      ON usersdata.id = messages.userID
      ORDER BY messages.id DESC
-          WHERE (usersdata.id = $1)
-     `,
-        [userID]
+     LIMIT 10
+     `
     );
 };
 exports.getlastmessage = function(messageID) {
@@ -194,78 +185,3 @@ exports.getUsersByIds = function getUsersByIds(arrayOfIds) {
     const query = `SELECT id,name, lastname, pictureurl FROM usersdata WHERE id = ANY($1)`;
     return db.query(query, [arrayOfIds]);
 };
-// exports.getsignature = userID => {
-//     return db.query(
-//         `SELECT signature
-//         FROM signatures
-//         WHERE userID = $1`,
-//         [userID]
-//     );
-// };
-// exports.insertinfo = function(userID, age, city, url) {
-//     return db.query(
-//         `INSERT INTO fullinfo (userID, age, city, url)
-//         VALUES ($1, $2, $3, $4)
-//         RETURNING id`,
-//         [userID || null, age || null, city || null, url || null]
-//     );
-// };
-// exports.updatefullinfo = function(age, city, url, userID) {
-//     return db.query(
-//         `INSERT INTO fullinfo (age, city, url, userID)
-//        VALUES ($1, $2, $3, $4)
-//        ON CONFLICT (userID)
-//        DO UPDATE SET age = $1, city = $2, url = $3`,
-//         [age || null, city || null, url || null, userID || null]
-//     );
-// };
-// exports.deletesignature = userID => {
-//     return db.query(
-//         `DELETE FROM signatures
-//         WHERE userID = $1`,
-//         [userID]
-//     );
-// };
-// exports.getsigners = function() {
-//     return db.query(
-//         `SELECT name, lastname, age, city, url
-//        FROM signatures
-//        LEFT JOIN usersdata
-//        ON usersdata.id = signatures.userID
-//        LEFT JOIN fullinfo
-//        ON fullinfo.userID = signatures.userID`
-//     );
-// };
-// exports.getcity = function(city) {
-//     return db.query(
-//         `SELECT name, lastname, age, city, url
-//        FROM signatures
-//        LEFT JOIN usersdata
-//        ON usersdata.id = signatures.userID
-//        LEFT JOIN fullinfo
-//        ON fullinfo.userID = signatures.userID
-//        WHERE LOWER(city) = LOWER($1)`,
-//         [city]
-//     );
-// };
-// exports.editinfo = function(userID) {
-//     return db.query(
-//         `SELECT name, lastname, age, city, url, email
-//        FROM signatures
-//        LEFT JOIN usersdata
-//        ON usersdata.id = signatures.userID
-//        LEFT JOIN fullinfo
-//        ON fullinfo.userID = signatures.userID
-//        WHERE signatures.userID = $1`,
-//         [userID]
-//     );
-// };
-// exports.checksignature = id => {
-//     return db.query(
-//         `SELECT *
-//         FROM signatures
-//         WHERE userID = $1`,
-//         [id]
-//     );
-// };
-//

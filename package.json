@@ -50,5 +50,8 @@
     },
     "keywords": [],
     "author": "",
-    "license": "ISC"
+    "license": "ISC",
+    "devDependencies": {
+        "jest": "^24.1.0"
+    }
 }
