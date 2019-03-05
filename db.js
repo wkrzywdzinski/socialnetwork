@@ -185,3 +185,12 @@ exports.getUsersByIds = function getUsersByIds(arrayOfIds) {
     const query = `SELECT id,name, lastname, pictureurl FROM usersdata WHERE id = ANY($1)`;
     return db.query(query, [arrayOfIds]);
 };
+
+exports.searchuser = search => {
+    return db.query(
+        `SELECT *
+    FROM usersdata
+    WHERE name LIKE $1 OR lastname LIKE $1`,
+        [search]
+    );
+};

@@ -13,7 +13,7 @@ app.use(express.static("./public"));
 app.use(compression());
 app.use(bodyParser.json());
 const cookieSessionMiddleware = cookieSession({
-    secret: `I'm always angry.`,
+    secret: `a very special secret.`,
     maxAge: 1000 * 60 * 60 * 24 * 90
 });
 app.use(cookieSessionMiddleware);
