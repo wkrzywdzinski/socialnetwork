@@ -31,7 +31,7 @@ export default class Bio extends React.Component {
         e.preventDefault();
         var self = this;
         self.props.showBioUpdate();
-        axios.post("/bioupdate", self.state).then(resp => {
+        axios.post("/bio-update", self.state).then(resp => {
             self.props.handleBio(resp);
         });
     }

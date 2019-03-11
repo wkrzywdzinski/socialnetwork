@@ -32,14 +32,14 @@ export async function userLeft(userID) {
     };
 }
 export async function receiveFriendsAndWannabes() {
-    const { data } = await axios.get("/receiveall");
+    const { data } = await axios.get("/receive-all");
     return {
         type: "RECEIVE_ALL",
         all: data
     };
 }
 export async function actionAdd(userid) {
-    const { data } = axios.post("/acceptrequest", {
+    const { data } = axios.post("/accept-request", {
         receiverid: userid
     });
     return {
@@ -49,7 +49,7 @@ export async function actionAdd(userid) {
     };
 }
 export async function actionDelete(userid) {
-    const { data } = await axios.post("/cancelrequest", {
+    const { data } = await axios.post("/cancel-request", {
         receiverid: userid
     });
     return {

@@ -10,7 +10,6 @@ import { initSocket } from "./socket";
 const store = createStore(reducer, applyMiddleware(reduxPromise));
 
 let component;
-////////render should be called once//////
 if (location.pathname === "/welcome") {
     component = <Welcome />;
 } else {

@@ -12,7 +12,7 @@ export default class Request extends React.Component {
     componentDidMount() {
         var self = this;
         axios
-            .get("/checkrequest", {
+            .get("/check-request", {
                 params: {
                     receiverid: self.props.receiverid
                 }
@@ -77,13 +77,11 @@ export default class Request extends React.Component {
                     });
                 });
         } else if (this.state.requeststatus == "received") {
-            console.log("accept");
             axios
-                .post("/acceptrequest", {
+                .post("/accept-request", {
                     receiverid: self.props.receiverid
                 })
                 .then(resp => {
-                    console.log(resp);
                     this.setState({
                         requeststatus: "accepted",
                         buttontext: "cancel friendship"

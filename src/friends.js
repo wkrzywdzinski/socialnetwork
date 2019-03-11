@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { receiveFriendsAndWannabes, actionAdd, actionDelete } from "./actions";
-// import axios from "./axios";
 
 class Friends extends React.Component {
     constructor() {

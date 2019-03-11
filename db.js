@@ -31,7 +31,7 @@ exports.hashPassword = function(plainTextPassword) {
         });
     });
 };
-exports.getuser = email => {
+exports.getUser = email => {
     return db.query(
         `SELECT *
     FROM usersdata
@@ -40,7 +40,7 @@ exports.getuser = email => {
     );
 };
 
-exports.receiveall = userID => {
+exports.receiveAll = userID => {
     return db.query(
         `
   SELECT usersdata.id, name, lastname, pictureurl, accepted
@@ -54,7 +54,7 @@ exports.receiveall = userID => {
     );
 };
 //
-exports.getuserbyid = id => {
+exports.getUserById = id => {
     return db.query(
         `SELECT *
     FROM usersdata
@@ -82,7 +82,7 @@ exports.checkPassword = function(
     });
 };
 
-exports.insertphoto = function(fullurl, userID) {
+exports.insertPhoto = function(fullurl, userID) {
     return db.query(
         `UPDATE usersdata
     SET pictureurl = $1
@@ -92,7 +92,7 @@ exports.insertphoto = function(fullurl, userID) {
     );
 };
 
-exports.insertrequest = function(receiverID, senderID) {
+exports.insertRequest = function(receiverID, senderID) {
     return db.query(
         `INSERT INTO friendships (receiverID, senderID)
     VALUES ($1, $2)
@@ -100,7 +100,7 @@ exports.insertrequest = function(receiverID, senderID) {
         [receiverID, senderID]
     );
 };
-exports.insertmessage = function(message, userID) {
+exports.insertMessage = function(message, userID) {
     return db.query(
         `INSERT INTO messages (message, userID)
     VALUES ($1, $2)
@@ -109,7 +109,7 @@ exports.insertmessage = function(message, userID) {
     );
 };
 
-exports.getmessages = function() {
+exports.getMessages = function() {
     return db.query(
         `SELECT messages.id, name, lastname, pictureurl, message
      FROM usersdata
@@ -120,7 +120,7 @@ exports.getmessages = function() {
      `
     );
 };
-exports.getlastmessage = function(messageID) {
+exports.getLastMessage = function(messageID) {
     return db.query(
         `SELECT messages.id, name, lastname, pictureurl, message
      FROM usersdata
@@ -132,7 +132,7 @@ exports.getlastmessage = function(messageID) {
     );
 };
 
-exports.checkrequest = function(receiverID, senderID) {
+exports.checkRequest = function(receiverID, senderID) {
     return db
         .query(
             `SELECT * FROM friendships
@@ -145,7 +145,7 @@ OR (receiverID = $2 AND senderID = $1)`,
         });
 };
 
-exports.cancelrequest = function(receiverID, senderID) {
+exports.cancelRequest = function(receiverID, senderID) {
     return db
         .query(
             `DELETE FROM friendships
@@ -158,7 +158,7 @@ OR (receiverID = $2 AND senderID = $1)`,
         });
 };
 
-exports.acceptrequest = function(receiverID, senderID) {
+exports.acceptRequest = function(receiverID, senderID) {
     return db
         .query(
             `UPDATE friendships
@@ -172,7 +172,7 @@ OR (receiverID = $2 AND senderID = $1)`,
         });
 };
 
-exports.insertbio = function(bio, userID) {
+exports.insertBio = function(bio, userID) {
     return db.query(
         `UPDATE usersdata
     SET bio = $1
@@ -186,7 +186,7 @@ exports.getUsersByIds = function getUsersByIds(arrayOfIds) {
     return db.query(query, [arrayOfIds]);
 };
 
-exports.searchuser = search => {
+exports.searchUser = search => {
     return db.query(
         `SELECT *
     FROM usersdata

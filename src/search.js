@@ -15,7 +15,7 @@ export default class Search extends React.Component {
     handleChange(e) {
         if (e.target.value !== "") {
             axios
-                .get("/searchuser", {
+                .get("/search-user", {
                     params: {
                         search: e.target.value
                     }

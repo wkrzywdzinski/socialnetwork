@@ -17,14 +17,14 @@ export function initSocket(store) {
         socket.on("userJoined", function(userID) {
             store.dispatch(userJoined(userID));
         });
-        socket.on("newMessage", function(data) {
-            store.dispatch(actionNewMessage(data));
-        });
         socket.on("userLeave", function(userID) {
             store.dispatch(userLeft(userID));
         });
         socket.on("getMessages", function(data) {
             store.dispatch(actionGetMessages(data));
+        });
+        socket.on("newMessage", function(data) {
+            store.dispatch(actionNewMessage(data));
         });
     }
     return socket;

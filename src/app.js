@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "./axios";
 import EasyTransition from "react-easy-transition";
-// import Logo from "./logo";
 import Profile from "./profile";
 import Profilepic from "./profilepic";
 import Friends from "./friends";
@@ -18,14 +17,14 @@ export default class App extends React.Component {
         this.state = {
             uploadervisable: false
         };
-        this.showuploader = this.showuploader.bind(this);
+        this.showUploader = this.showUploader.bind(this);
         this.handlePicture = this.handlePicture.bind(this);
         this.handleBio = this.handleBio.bind(this);
     }
     handlePicture(resp) {
         this.setState({
             pictureurl: resp.data[0].pictureurl,
-            uploadervisable: false
+            uploaderVisable: false
         });
     }
     handleBio(resp) {
@@ -33,14 +32,14 @@ export default class App extends React.Component {
             bio: resp.data[0].bio
         });
     }
-    showuploader() {
-        if (this.state.uploadervisable) {
+    showUploader() {
+        if (this.state.uploaderVisable) {
             this.setState({
-                uploadervisable: false
+                uploaderVisable: false
             });
         } else
             this.setState({
-                uploadervisable: true
+                uploaderVisable: true
             });
     }
     componentDidMount() {
@@ -53,17 +52,14 @@ export default class App extends React.Component {
         return (
             <div>
                 <div id="header">
-                    {/*
-                    <Logo />
-                    */}
                     <Profilepic
                         name={this.state.name}
                         pictureurl={this.state.pictureurl}
-                        showuploader={this.showuploader}
+                        showuploader={this.showUploader}
                     />
                     <p id="headerfont">POLKA DOT CLUB</p>
                 </div>
-                {this.state.uploadervisable && (
+                {this.state.uploaderVisable && (
                     <EasyTransition
                         path={location.pathname}
                         initialStyle={{ opacity: 0, background: "red" }}
