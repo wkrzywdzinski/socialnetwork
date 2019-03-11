@@ -81,7 +81,7 @@ export default class Request extends React.Component {
                 .post("/accept-request", {
                     receiverid: self.props.receiverid
                 })
-                .then(resp => {
+                .then(() => {
                     this.setState({
                         requeststatus: "accepted",
                         buttontext: "cancel friendship"

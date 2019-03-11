@@ -29,9 +29,11 @@ class Chat extends React.Component {
             <div>
                 {messages.map(message => (
                     <div key={message.id} className="message">
-                        <p>
-                            {message.name}: {message.message}
-                        </p>
+                        {message.message && (
+                            <p>
+                                {message.name}: {message.message}
+                            </p>
+                        )}
                     </div>
                 ))}
             </div>

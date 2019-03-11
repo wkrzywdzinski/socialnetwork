@@ -57,7 +57,7 @@ export default class App extends React.Component {
                         pictureurl={this.state.pictureurl}
                         showuploader={this.showUploader}
                     />
-                    <p id="headerfont">POLKA DOT CLUB</p>
+                    <p>POLKA DOT SOCIETY</p>
                 </div>
                 {this.state.uploaderVisable && (
                     <EasyTransition

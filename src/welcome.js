@@ -6,7 +6,7 @@ export default function Welcome() {
     //////export
     return (
         <div className="welcomebox">
-            <h1>Welcome to polka dot club</h1>
+            <h1>Welcome to polka dot society</h1>
             <HashRouter>
                 <div>
                     <Route exact path="/" component={Registration} />
