@@ -48,7 +48,6 @@ var uploader = multer({
         fileSize: 2097152
     }
 });
-//////////////////////get////////////////////////
 
 if (process.env.NODE_ENV != "production") {
     app.use(
@@ -60,6 +59,8 @@ if (process.env.NODE_ENV != "production") {
 } else {
     app.use("/bundle.js", (req, res) => res.sendFile(`${__dirname}/bundle.js`));
 }
+
+//////////////////////GET ROUTES////////////////////////
 
 app.get("/welcome", function(req, res) {
     if (req.session.id) {
