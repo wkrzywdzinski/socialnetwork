@@ -15,7 +15,6 @@ export default class Login extends React.Component {
     }
     handleSubmit(e) {
         e.preventDefault();
-        // console.log(this.state);
         axios.post("/login", this.state).then(resp => {
             if (resp.data.success) {
                 location.replace("/");
@@ -23,7 +22,6 @@ export default class Login extends React.Component {
                     error: false
                 });
             } else {
-                console.log("bad");
                 this.setState({
                     error: true
                 });

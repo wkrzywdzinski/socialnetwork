@@ -139,7 +139,7 @@ app.get("/user", function(req, res) {
 // updates users bio section
 app.post("/bio-update", function(req, res) {
     if (req.body.bio) {
-        db.insertbio(req.body.bio, req.session.id).then(function(results) {
+        db.insertBio(req.body.bio, req.session.id).then(function(results) {
             res.json(results.rows);
         });
     } else {
