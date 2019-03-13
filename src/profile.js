@@ -28,7 +28,6 @@ export default class Profile extends React.Component {
             <div id="profilebox">
                 <h2>{this.props.name}</h2>
                 <Profilepic pictureurl={this.props.pictureurl} />
-                <p>about me:</p>
                 <p>{this.props.bio}</p>
                 <p id="updatefont" onClick={this.showBioUpdate}>
                     [update bio]

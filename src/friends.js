@@ -57,11 +57,11 @@ class Friends extends React.Component {
         return (
             <div id="friendsandwannabes">
                 <div className="friendsbox">
-                    <h1>wannabes</h1>
+                    <h1>wannabes:</h1>
                     {wannabesrender}
                 </div>
-                <div>
-                    <h1>friends</h1>
+                <div className="friendsbox">
+                    <h1>friends:</h1>
                     {friendsrender}
                 </div>
             </div>

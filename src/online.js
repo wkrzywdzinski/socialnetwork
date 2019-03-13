@@ -14,7 +14,7 @@ class Online extends React.Component {
         }
         const onlinerender = (
             <div className="users">
-                <h1>online</h1>
+                <h1>users online:</h1>
                 {online.map(user => (
                     <div key={user.id} className="user">
                         <Link to={`/user/${user.id}`}>
