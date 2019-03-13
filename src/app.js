@@ -51,14 +51,14 @@ export default class App extends React.Component {
     render() {
         return (
             <div>
-                <div id="header">
+                <header>
                     <Profilepic
                         name={this.state.name}
                         pictureurl={this.state.pictureurl}
                         showuploader={this.showUploader}
                     />
                     <p>POLKA DOT SOCIETY</p>
-                </div>
+                </header>
                 {this.state.uploaderVisable && (
                     <EasyTransition
                         path={location.pathname}
@@ -133,7 +133,6 @@ export default class App extends React.Component {
                         />
                     </div>
                 </BrowserRouter>
-                <footer />
             </div>
         );
     }

@@ -41,7 +41,7 @@ export default class Search extends React.Component {
     render() {
         const searchresults = this.state.searchresults;
         const searchrender = (
-            <div className="searchbox">
+            <div id="searchresults">
                 {searchresults &&
                     searchresults.map(user => (
                         <div key={user.id} className="user">

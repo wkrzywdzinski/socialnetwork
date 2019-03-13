@@ -26,10 +26,13 @@ export default class Profile extends React.Component {
     render() {
         return (
             <div id="profilebox">
-                <h1> profile of {this.props.name} </h1>
+                <h2>{this.props.name}</h2>
                 <Profilepic pictureurl={this.props.pictureurl} />
-                {this.props.bio && <p>bio: {this.props.bio} </p>}
-                <p onClick={this.showBioUpdate}>[update your bio]</p>
+                <p>about me:</p>
+                <p>{this.props.bio}</p>
+                <p id="updatefont" onClick={this.showBioUpdate}>
+                    [update bio]
+                </p>
                 {this.state.bioUpdateVisable && (
                     <Bio
                         bio={this.props.bio}

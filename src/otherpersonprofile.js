@@ -29,9 +29,9 @@ export default class OtherPersonProfile extends React.Component {
     render() {
         return (
             <div id="profilebox">
-                <h1> profile of {this.state.name} </h1>
+                <h2> profile of {this.state.name} </h2>
                 <Profilepic pictureurl={this.state.pictureurl} />
-                {this.state.bio && <h1>bio: {this.state.bio} </h1>}
+                {this.state.bio && <p>bio: {this.state.bio} </p>}
                 <Request receiverid={this.props.match.params.id} />
             </div>
         );

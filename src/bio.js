@@ -38,7 +38,7 @@ export default class Bio extends React.Component {
 
     render() {
         return (
-            <div id="updatebio">
+            <div id="updatebiobox">
                 <form onSubmit={this.handleSubmit}>
                     <input
                         onChange={this.handleChange}
