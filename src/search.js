@@ -5,8 +5,7 @@ export default class Search extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchresults: "",
-            resultsvisable: true
+            searchresults: ""
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);

@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "./axios";
-import EasyTransition from "react-easy-transition";
+import { BrowserRouter, Route } from "react-router-dom";
 import Profile from "./profile";
 import Profilepic from "./profilepic";
 import Friends from "./friends";
@@ -9,7 +9,6 @@ import Online from "./online";
 import Chat from "./chat";
 import Search from "./search";
 import OtherPersonProfile from "./otherpersonprofile";
-import { BrowserRouter, Route } from "react-router-dom";
 
 export default class App extends React.Component {
     constructor() {
@@ -53,21 +52,13 @@ export default class App extends React.Component {
             <div>
                 <header>
                     <Profilepic
-                        name={this.state.name}
                         pictureurl={this.state.pictureurl}
                         showuploader={this.showUploader}
                     />
                     <p>POLKA DOT SOCIETY</p>
                 </header>
                 {this.state.uploaderVisable && (
-                    <EasyTransition
-                        path={location.pathname}
-                        initialStyle={{ opacity: 0, background: "red" }}
-                        transition="opacity 0.3s ease-in, background 0.5s ease-in"
-                        finalStyle={{ opacity: 0.9, background: "white" }}
-                    >
-                        <Uploader handlePicture={this.handlePicture} />
-                    </EasyTransition>
+                    <Uploader handlePicture={this.handlePicture} />
                 )}
                 <BrowserRouter>
                     <div>

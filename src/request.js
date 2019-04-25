@@ -66,7 +66,7 @@ export default class Request extends React.Component {
             this.state.requeststatus == "accepted"
         ) {
             axios
-                .post("/cancelrequest", {
+                .post("/cancel-request", {
                     receiverid: self.props.receiverid
                 })
                 .then(resp => {

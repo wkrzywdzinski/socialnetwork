@@ -157,16 +157,12 @@ exports.insertRequest = function(receiverID, senderID) {
 };
 
 exports.checkRequest = function(receiverID, senderID) {
-    return db
-        .query(
-            `SELECT * FROM friendships
+    return db.query(
+        `SELECT * FROM friendships
 WHERE (receiverID = $1 AND senderID = $2)
 OR (receiverID = $2 AND senderID = $1)`,
-            [receiverID, senderID]
-        )
-        .catch(function(err) {
-            console.log("error in db", err);
-        });
+        [receiverID, senderID]
+    );
 };
 
 exports.acceptRequest = function(receiverID, senderID) {

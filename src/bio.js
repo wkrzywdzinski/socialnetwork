@@ -6,22 +6,10 @@ export default class Bio extends React.Component {
         this.state = {
             bioUpdateVisable: false
         };
-        this.showBioUpdate = this.showBioUpdate.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    showBioUpdate() {
-        if (this.state.bioUpdateVisable) {
-            this.setState({
-                bioUpdateVisable: false
-            });
-        } else {
-            this.setState({
-                bioUpdateVisable: true
-            });
-        }
-    }
     handleChange(e) {
         this.setState({
             bio: e.target.value
